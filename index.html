@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Interactive World Map</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .map-section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .map-section h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #worldMap {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+
+      
+        #wikiFrame {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .instructions {
+            padding: 15px;
+            background-color: #e8f4f8;
+            margin: 20px;
+            border-radius: 4px;
+            text-align: center;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="map-section">
+            <h1>Interactive World Map</h1>
+            
+            <img src="chennai.jpg" usemap="#chennaiMap">
+
+<map name="chennaiMap">
+
+  <!-- Chennai Central -->
+  <area shape="rect" coords="350,90,430,150"
+        href="#"
+        onclick="loadWiki('Chennai'); return false;"
+        alt="Chennai"
+        title="Chennai Central">
+
+  <!-- Anna Nagar -->
+  <area shape="rect" coords="260,110,320,160"
+        href="#"
+        onclick="loadWiki('Anna_Nagar'); return false;"
+        alt="Anna Nagar"
+        title="Anna Nagar">
+
+  <!-- T Nagar -->
+  <area shape="rect" coords="320,160,380,210"
+        href="#"
+        onclick="loadWiki('T_Nagar'); return false;"
+        alt="T Nagar"
+        title="T Nagar">
+
+  <!-- Adyar -->
+  <area shape="rect" coords="380,190,440,240"
+        href="#"
+        onclick="loadWiki('Adyar'); return false;"
+        alt="Adyar"
+        title="Adyar">
+
+  <!-- Velachery -->
+  <area shape="rect" coords="330,220,400,270"
+        href="#"
+        onclick="loadWiki('Velachery'); return false;"
+        alt="Velachery"
+        title="Velachery">
+
+  <!-- Avadi -->
+  <area shape="rect" coords="200,90,260,140"
+        href="#"
+        onclick="loadWiki('Avadi'); return false;"
+        alt="Avadi"
+        title="Avadi">
+
+</map>
+
+        </div>
+
+        <div class="instructions">
+            Click on any continent on the map above to view its Wikipedia page below
+        </div>
+
+        <div class="iframe-section">
+            <h2 id="frameTitle">Select a continent to learn more</h2>
+            <iframe id="wikiFrame" src="about:blank"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function loadWiki(location) {
+            const iframe = document.getElementById('wikiFrame');
+            const title = document.getElementById('frameTitle');
+            
+            // Update the iframe source
+            iframe.src = `https://en.wikipedia.org/wiki/${location}`;
+            
+            // Update the title
+            title.textContent = location.replace('_', ' ');
+        }
+    </script>
+</body>
+</html>
